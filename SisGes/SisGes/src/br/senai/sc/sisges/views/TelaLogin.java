@@ -7,6 +7,7 @@
 package br.senai.sc.sisges.views;
 
 import br.senai.sc.sisges.dao.ColaboradorDao;
+import br.senai.sc.sisges.jframe.SisgesjFrame;
 import br.senai.sc.sisges.modelo.Colaborador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -134,25 +135,45 @@ public class TelaLogin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
+    public Colaborador getC() throws SQLException{
         ColaboradorDao col = new ColaboradorDao();
         Colaborador c;
 
+        c = col.validarColaborador(cpSenha.getText(), cpUsuario.getText());
+        
+        return c;
+        
+    }
+    
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+
+        SisgesjFrame sis = null;
         try {
-            c = col.validarColaborador(cpSenha.getText(), cpUsuario.getText());
+            sis = new SisgesjFrame();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
             
-            if (c.equals(null)) {
+            Colaborador c;
+            c = getC();
+            if (c == null) {
                 JOptionPane.showMessageDialog(null, "Usuário não autenticado!");
             } else {
+                sis.setVisible();
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+                
+                
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Erro ao fazer Login!");
         }
-            
+          
+        
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void cpSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpSenhaActionPerformed

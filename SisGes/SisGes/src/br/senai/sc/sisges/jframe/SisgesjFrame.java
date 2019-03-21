@@ -5,6 +5,8 @@
  */
 package br.senai.sc.sisges.jframe;
 
+import br.senai.sc.sisges.dao.ColaboradorDao;
+import br.senai.sc.sisges.modelo.Colaborador;
 import br.senai.sc.sisges.views.CadastroAgenda;
 import br.senai.sc.sisges.views.CadastroColaborador;
 import br.senai.sc.sisges.views.CadastroDeEquipe;
@@ -14,6 +16,8 @@ import br.senai.sc.sisges.views.ListagemEquipe;
 import br.senai.sc.sisges.views.TelaLogin;
 import java.awt.CardLayout;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,26 +26,19 @@ import javax.swing.JOptionPane;
  */
 public class SisgesjFrame extends javax.swing.JFrame {
 
+    private TelaLogin tela = new TelaLogin();
+    private ColaboradorDao col = new ColaboradorDao();
+    private Colaborador c = new Colaborador();
+    
     /**
      * Creates new form SisLojFrame
      */
-    public SisgesjFrame() {
+    public SisgesjFrame() throws SQLException {
         initComponents();
 
-        //Cria os componentes
-        CadastroColaborador cadCol = new CadastroColaborador();
         TelaLogin tp = new TelaLogin();
-        CadastroDeEquipe cadEqu = new CadastroDeEquipe();
-        ListagemEquipe lEqu = new ListagemEquipe();
-        CadastroAgenda cAge = new CadastroAgenda();
-        ListagemAgenda lAge = new ListagemAgenda();
-
-        painelPrincipal.add(cadCol, "cadastroColaborador");
+        
         painelPrincipal.add(tp, "telaPadrao");
-        painelPrincipal.add(cadEqu, "cadastroEquipe");
-        painelPrincipal.add(lEqu, "listarEquipe");
-        painelPrincipal.add(cAge, "cadastroAgenda");
-        painelPrincipal.add(lAge, "listarAgenda");
 
         //Chamar a tela padrão aqui
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
@@ -49,7 +46,33 @@ public class SisgesjFrame extends javax.swing.JFrame {
         
         this.setExtendedState(MAXIMIZED_BOTH);
 
+        
     }
+    
+     public void setVisible() throws SQLException{
+         
+         
+             
+        CadastroColaborador cadCol = new CadastroColaborador();
+        CadastroDeEquipe cadEqu = new CadastroDeEquipe();
+        ListagemEquipe lEqu = new ListagemEquipe();
+        CadastroAgenda cAge = new CadastroAgenda();
+        ListagemAgenda lAge = new ListagemAgenda();
+        ListagemColaborador lc = new ListagemColaborador();
+         
+         
+        painelPrincipal.add(lc, "listaColaborador");     
+        painelPrincipal.add(cadCol, "cadastroColaborador");
+        painelPrincipal.add(cadEqu, "cadastroEquipe");
+        painelPrincipal.add(lEqu, "listarEquipe");
+        painelPrincipal.add(cAge, "cadastroAgenda");
+        painelPrincipal.add(lAge, "listarAgenda");
+             
+         
+                
+                
+            }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,15 +179,15 @@ public class SisgesjFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void menCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadastrarClienteActionPerformed
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
         cl.show(painelPrincipal, "cadastroColaborador");
     }//GEN-LAST:event_menCadastrarClienteActionPerformed
 
     private void menListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menListarClienteActionPerformed
-        ListagemColaborador lc = new ListagemColaborador();
-        painelPrincipal.add(lc, "listaColaborador");
-        
+  
         CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
         cl.show(painelPrincipal, "listaColaborador");
     }//GEN-LAST:event_menListarClienteActionPerformed
@@ -225,7 +248,11 @@ public class SisgesjFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SisgesjFrame().setVisible(true);
+                try {
+                    new SisgesjFrame().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SisgesjFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

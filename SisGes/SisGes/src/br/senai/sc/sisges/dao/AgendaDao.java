@@ -1,6 +1,5 @@
 package br.senai.sc.sisges.dao;
 
-import br.senai.sc.sisges.dao.ConnectionFactory;
 import br.senai.sc.sisges.modelo.Agenda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
