@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ColaboradorDao extends ConnectionFactory {
 
@@ -138,8 +139,8 @@ public class ColaboradorDao extends ConnectionFactory {
             st.setString(2, usuCol);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    col = new Colaborador();
-                     col.setIdCol(rs.getLong("idCol"));
+                col = new Colaborador();
+                col.setIdCol(rs.getLong("idCol"));
                 col.setNomCol(rs.getString("nomCol"));
                 col.setEndCol(rs.getString("endCol"));
                 col.setNumCol(rs.getLong("numCol"));
@@ -154,6 +155,8 @@ public class ColaboradorDao extends ConnectionFactory {
                 col.setUltAcCol(rs.getString("ultAcCol"));
                 col.setEquCol(rs.getString("equCol"));
                 col.setDddCol(rs.getLong("dddCol"));
+                
+                
                 }
             }
             st.close();

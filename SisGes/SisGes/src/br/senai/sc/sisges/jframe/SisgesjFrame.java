@@ -29,6 +29,9 @@ public class SisgesjFrame extends javax.swing.JFrame {
     private TelaLogin tela = new TelaLogin();
     private ColaboradorDao col = new ColaboradorDao();
     private Colaborador c = new Colaborador();
+    public String tipo= "";
+    
+   
     
     /**
      * Creates new form SisLojFrame
@@ -36,9 +39,8 @@ public class SisgesjFrame extends javax.swing.JFrame {
     public SisgesjFrame() throws SQLException {
         initComponents();
 
-        TelaLogin tp = new TelaLogin();
         
-        painelPrincipal.add(tp, "telaPadrao");
+        painelPrincipal.add(tela, "telaPadrao");
 
         //Chamar a tela padrão aqui
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
@@ -46,33 +48,8 @@ public class SisgesjFrame extends javax.swing.JFrame {
         
         this.setExtendedState(MAXIMIZED_BOTH);
 
-        
     }
     
-     public void setVisible() throws SQLException{
-         
-         
-             
-        CadastroColaborador cadCol = new CadastroColaborador();
-        CadastroDeEquipe cadEqu = new CadastroDeEquipe();
-        ListagemEquipe lEqu = new ListagemEquipe();
-        CadastroAgenda cAge = new CadastroAgenda();
-        ListagemAgenda lAge = new ListagemAgenda();
-        ListagemColaborador lc = new ListagemColaborador();
-         
-         
-        painelPrincipal.add(lc, "listaColaborador");     
-        painelPrincipal.add(cadCol, "cadastroColaborador");
-        painelPrincipal.add(cadEqu, "cadastroEquipe");
-        painelPrincipal.add(lEqu, "listarEquipe");
-        painelPrincipal.add(cAge, "cadastroAgenda");
-        painelPrincipal.add(lAge, "listarAgenda");
-             
-         
-                
-                
-            }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -180,25 +157,52 @@ public class SisgesjFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
     private void menCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadastrarClienteActionPerformed
+    
+        tipo= tela.getTipo();
+        
+        if (tipo.equals("Administrador")){
+            
+        CadastroColaborador cadCol = new CadastroColaborador();
+        painelPrincipal.add(cadCol, "cadastroColaborador");
+        
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
-        cl.show(painelPrincipal, "cadastroColaborador");
+        cl.show(painelPrincipal, "cadastroColaborador");}
     }//GEN-LAST:event_menCadastrarClienteActionPerformed
 
     private void menListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menListarClienteActionPerformed
-  
+        
+        tipo= tela.getTipo();
+        
+        if (tipo.equals("Administrador")) {
+            
+        ListagemColaborador lc = new ListagemColaborador();
+        painelPrincipal.add(lc, "listaColaborador"); 
+          
         CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
-        cl.show(painelPrincipal, "listaColaborador");
+        cl.show(painelPrincipal, "listaColaborador");}
     }//GEN-LAST:event_menListarClienteActionPerformed
 
     private void menCadastrarEquipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadastrarEquipeActionPerformed
+        
+        tipo= tela.getTipo();
+        
+        if (tipo.equals("Administrador")) {
+            
+        CadastroDeEquipe cadEqu = new CadastroDeEquipe();
+        painelPrincipal.add(cadEqu, "cadastroEquipe");
+        
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
-         cl.show(painelPrincipal, "cadastroEquipe");
+         cl.show(painelPrincipal, "cadastroEquipe");}
     }//GEN-LAST:event_menCadastrarEquipeActionPerformed
 
     private void menListarEquipesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menListarEquipesActionPerformed
          
+        tipo= tela.getTipo();
+        
+        ListagemEquipe lEqu = new ListagemEquipe();
+        painelPrincipal.add(lEqu, "listarEquipe");
+        
         CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
         cl.show(painelPrincipal, "listarEquipe");
         
@@ -206,12 +210,26 @@ public class SisgesjFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menListarEquipesActionPerformed
 
     private void menListarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menListarProdutoActionPerformed
+        
+        tipo= tela.getTipo();
+        
+        if (tipo.equals("Administrador")) {
+            
+        CadastroAgenda cAge = new CadastroAgenda();
+        painelPrincipal.add(cAge, "cadastroAgenda");
+            
         CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
-        cl.show(painelPrincipal, "cadastroAgenda");
+        cl.show(painelPrincipal, "cadastroAgenda");}
     }//GEN-LAST:event_menListarProdutoActionPerformed
 
     private void menCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadastrarProdutoActionPerformed
-       CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
+       
+        tipo= tela.getTipo();
+        
+        ListagemAgenda lAge = new ListagemAgenda();
+        painelPrincipal.add(lAge, "listarAgenda");
+        
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
         cl.show(painelPrincipal, "listarAgenda");
     }//GEN-LAST:event_menCadastrarProdutoActionPerformed
 

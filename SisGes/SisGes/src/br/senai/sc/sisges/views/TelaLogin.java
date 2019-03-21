@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 public class TelaLogin extends javax.swing.JPanel {
 
     private Connection con;
+    private String tipo = "";
     
     /** Creates new form TelaPadrao */
     public TelaLogin() {
@@ -135,6 +136,14 @@ public class TelaLogin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public Colaborador getC() throws SQLException{
         ColaboradorDao col = new ColaboradorDao();
         Colaborador c;
@@ -158,11 +167,11 @@ public class TelaLogin extends javax.swing.JPanel {
             
             Colaborador c;
             c = getC();
-            if (c == null) {
-                JOptionPane.showMessageDialog(null, "Usuário não autenticado!");
-            } else {
-                sis.setVisible();
+            setTipo(c.getTipoCol());
+            if (c != null) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário não autenticado!");
                 
                 
             }
@@ -171,11 +180,11 @@ public class TelaLogin extends javax.swing.JPanel {
             Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Erro ao fazer Login!");
         }
-          
-        
+         
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    
     private void cpSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpSenhaActionPerformed
