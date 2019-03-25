@@ -79,6 +79,16 @@ public class SisgesjFrame extends javax.swing.JFrame {
         painelPrincipal.setLayout(new java.awt.CardLayout());
 
         menColaborador.setText("Colaborador");
+        menColaborador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menColaboradorMouseClicked(evt);
+            }
+        });
+        menColaborador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menColaboradorActionPerformed(evt);
+            }
+        });
 
         menCadastrarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         menCadastrarCliente.setText("Cadastrar colaborador");
@@ -101,6 +111,11 @@ public class SisgesjFrame extends javax.swing.JFrame {
         barraDeMenu.add(menColaborador);
 
         menAgenda.setText("Agenda");
+        menAgenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menAgendaMouseClicked(evt);
+            }
+        });
 
         menCadastrarProduto.setText("Consultar agenda");
         menCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +136,11 @@ public class SisgesjFrame extends javax.swing.JFrame {
         barraDeMenu.add(menAgenda);
 
         menEquipe.setText("Equipe");
+        menEquipe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menEquipeMouseClicked(evt);
+            }
+        });
 
         menCadastrarEquipe.setText("Cadastrar equipe");
         menCadastrarEquipe.addActionListener(new java.awt.event.ActionListener() {
@@ -200,12 +220,13 @@ public class SisgesjFrame extends javax.swing.JFrame {
          
         tipo= tela.getTipo();
         
+         if (tipo.equals("Administrador" )||tipo.equals("Colaborador")){
         ListagemEquipe lEqu = new ListagemEquipe();
         painelPrincipal.add(lEqu, "listarEquipe");
         
         CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
         cl.show(painelPrincipal, "listarEquipe");
-        
+         }
         
     }//GEN-LAST:event_menListarEquipesActionPerformed
 
@@ -213,7 +234,7 @@ public class SisgesjFrame extends javax.swing.JFrame {
         
         tipo= tela.getTipo();
         
-        if (tipo.equals("Administrador")) {
+        if (tipo.equals("Administrador" )||tipo.equals("Colaborador")) {
             
         CadastroAgenda cAge = new CadastroAgenda();
         painelPrincipal.add(cAge, "cadastroAgenda");
@@ -225,13 +246,55 @@ public class SisgesjFrame extends javax.swing.JFrame {
     private void menCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadastrarProdutoActionPerformed
        
         tipo= tela.getTipo();
-        
+        if (tipo.equals("Administrador")) {
         ListagemAgenda lAge = new ListagemAgenda();
         painelPrincipal.add(lAge, "listarAgenda");
         
         CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
         cl.show(painelPrincipal, "listarAgenda");
+        }
     }//GEN-LAST:event_menCadastrarProdutoActionPerformed
+
+    private void menColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menColaboradorActionPerformed
+            
+    }//GEN-LAST:event_menColaboradorActionPerformed
+
+    private void menColaboradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menColaboradorMouseClicked
+        tipo= tela.getTipo();
+        
+        if (tipo.equals("")){
+        JOptionPane.showMessageDialog(null,"PARA TER ACESSO AO MENU FAÇA O LOGIN!");
+        } 
+        else if (tipo.equals("Colaborador")){
+        JOptionPane.showMessageDialog(null,"ACESSO RESTRITO A ADMINISTRADORES!");
+        } 
+        
+    }//GEN-LAST:event_menColaboradorMouseClicked
+
+    private void menEquipeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menEquipeMouseClicked
+        
+         tipo= tela.getTipo();
+        
+        if (tipo.equals("")){
+        JOptionPane.showMessageDialog(null,"PARA TER ACESSO AO MENU FAÇA O LOGIN!");
+        } 
+        else if (tipo.equals("Colaborador")){
+        JOptionPane.showMessageDialog(null,"ACESSO RESTRITO A ADMINISTRADORES!");
+        } 
+        
+                                               
+        
+    }//GEN-LAST:event_menEquipeMouseClicked
+
+    private void menAgendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menAgendaMouseClicked
+
+        tipo= tela.getTipo();
+        
+        if (tipo.equals("")){
+        JOptionPane.showMessageDialog(null,"PARA TER ACESSO AO MENU FAÇA O LOGIN!");
+        } 
+
+    }//GEN-LAST:event_menAgendaMouseClicked
 
     /**
      * @param args the command line arguments

@@ -8,6 +8,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Colaborador"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menColaboradorMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menColaboradorActionPerformed"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menCadastrarCliente">
               <Properties>
@@ -37,6 +41,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agenda"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menAgendaMouseClicked"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menCadastrarProduto">
               <Properties>
@@ -60,6 +67,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Equipe"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menEquipeMouseClicked"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menCadastrarEquipe">
               <Properties>
